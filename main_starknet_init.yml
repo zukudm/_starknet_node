@@ -19,7 +19,7 @@
 
     - name: Git checkout
       ansible.builtin.git:
-        repo: " {{ pathfinder_git_link }}"
+        repo: 'https://github.com/eqlabs/pathfinder.git'
         dest: "{{ pathfinder_git_name }}/"
         version: "{{ pathfinder_version }}"
 
