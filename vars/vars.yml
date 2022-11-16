@@ -9,7 +9,7 @@ pathfinder_git_link: https://api.github.com/repos/eqlabs/pathfinder.git
 pathfinder_api_token_link: https://eth-goerli.alchemyapi.io/v2/
 
 pathfinder_api_token: not_defined
-git_dir_name: Pathfinder
+pathfinder_git_name: Pathfinder
 
 
 
