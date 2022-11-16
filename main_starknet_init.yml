@@ -17,8 +17,12 @@
           meta: end_host
       when: pathfinder_api_token  == 'not_defined'
 
-    - name: Happy flow
-      debug:
-        msg: everything is OK
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: " {{ pathfinder_git_link }}"
+        dest: "{{ pathfinder_git_name }}/"
+        version: "{{ pathfinder_version }}"
+
+      
 
           
