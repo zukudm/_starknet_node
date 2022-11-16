@@ -1,0 +1,24 @@
+    - name: Remove old container if exists
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: absent
+
+    - name: Remove an old volume if exists
+      community.docker.docker_volume:
+        name: "{{ volume_name }}"
+        state: absent
+    
+    - block:
+        - name: 'Print message about the problem'
+          debug:
+            msg: API Token not defined
+
+        - name: 'Finish processing'
+          meta: end_host
+      when: pathfinder_api_token  == 'not_defined'
+
+    - name: Happy flow
+      debug:
+        msg: everything is OK
+        
+          
