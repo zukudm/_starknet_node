@@ -5,7 +5,7 @@ volume_name: pathfinder_volume
 # Specify "latest" for latest version
 pathfinder_version: v0.3.8
 
-pathfinder_git_link: https://github.com/repos/eqlabs/pathfinder.git
+pathfinder_git_link: https://github.com/eqlabs/pathfinder.git
 pathfinder_api_token_link: https://eth-goerli.alchemyapi.io/v2/
 
 pathfinder_api_token: not_defined
