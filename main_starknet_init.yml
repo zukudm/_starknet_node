@@ -11,7 +11,7 @@
     - name: Validate the activity
       assert:
         that: 
-          - pathfinder_api_token  != 'not_defined'
+          - pathfinder_api_token_url  != 'not_defined'
         fail_msg: "Invalid API KEY provided"
         success_msg: "API KEY looks good!"
 
@@ -26,10 +26,6 @@
             return_content: true
           register: pathfinder_latest
 
-        - name: Print latest version
-          debug:
-            msg: "{{ pathfinder_latest.json.tag_name }}"
-        
         - name: Define version to checkout
           set_fact: checkout_version="{{ pathfinder_latest.json.tag_name }}"
 
@@ -46,6 +42,12 @@
         repo: '{{ pathfinder_git_link }}'
         dest: "{{ pathfinder_git_name }}/"
         version: "{{ checkout_version }}"
+
+    - name: 'Make Env file for compose image'
+      lineinfile:
+        path:  "{{ pathfinder_git_name }}/{{ env_file }}"
+        create: yes
+        line: "PATHFINDER_ETHEREUM_API_URL={{ pathfinder_api_token_url }}"
 
       
 
