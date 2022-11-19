@@ -14,6 +14,9 @@
           - pathfinder_api_token  != 'not_defined'
         fail_msg: "Invalid API KEY provided"
         success_msg: "API KEY looks good!"
+
+    - name: Version to checkout Init
+      set_fact: checkout_version="{{ pathfinder_version }}"
     
     - block: 
 
@@ -28,13 +31,15 @@
             msg: "{{ pathfinder_latest.json.tag_name }}"
         
         - name: Define version to checkout
-          set_fact: pathfinder_version="{{ pathfinder_latest.json.tag_name }}"
+          set_fact: checkout_version="{{ pathfinder_latest.json.tag_name }}"
 
-        - name: Print latest pathfinder_version variable
-          debug:
-            msg: "{{ pathfinder_version }}"
-
+        
       when: pathfinder_version == 'latest'
+
+    - name: Print latest pathfinder_version variable
+      debug:
+        msg: "{{ checkout_version }}"  
+
 
       
 
