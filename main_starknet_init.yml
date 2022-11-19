@@ -36,20 +36,16 @@
         
       when: pathfinder_version == 'latest'
 
-    - name: Print latest pathfinder_version variable
+    - name: Print latest checkout_version variable
       debug:
         msg: "{{ checkout_version }}"  
 
 
-      
-
-
-
-    # - name: Git checkout
-    #   ansible.builtin.git:
-    #     repo: '{{ pathfinder_git_link }}'
-    #     dest: "{{ pathfinder_git_name }}/"
-    #     version: "{{ pathfinder_version }}"
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: '{{ pathfinder_git_link }}'
+        dest: "{{ pathfinder_git_name }}/"
+        version: "{{ checkout_version }}"
 
       
 
