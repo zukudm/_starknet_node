@@ -49,6 +49,10 @@
         create: yes
         line: "PATHFINDER_ETHEREUM_API_URL={{ pathfinder_api_token_url }}"
 
-      
+    - name: 'Make a directory for a volume'
+      file:
+        state: directory
+        path: "./{{ pathfinder_git_name }}/{{ pathfinder_git_name }}"
+          
 
           
