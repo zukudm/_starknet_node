@@ -7,6 +7,13 @@
     #   community.docker.docker_volume:
     #     name: "{{ volume_name }}"
     #     state: absent
+
+    - name: Validate the activity
+      assert:
+        that: 
+          - pathfinder_api_token  != 'not_defined'
+        fail_msg: "Invalid activity provided, specify one of- nuke, touch, copy"
+        success_msg: "Input looks good!"
     
     - block:
         - name: 'Print message about the problem'
