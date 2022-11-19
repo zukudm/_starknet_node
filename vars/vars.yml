@@ -2,6 +2,9 @@
 container_name: pathfinder_node
 volume_name: pathfinder_volume
 
+source_image_name: eqlabs/pathfinder:latest
+container_mount_point: /usr/share/pathfinder/data
+
 # Specify "latest" for latest version or exact version like "v0.3.8"
 pathfinder_version: v0.3.8
 
@@ -12,6 +15,10 @@ pathfinder_githubapi_url: https://api.github.com/repos/eqlabs/pathfinder/release
 pathfinder_api_token_url: not_defined
 pathfinder_git_name: pathfinder
 env_file: pathfinder-var.env
+
+
+
+
 
 
 

@@ -1,0 +1,70 @@
+- name: Install 
+  vars_files: 
+    - vars/vars.yml
+  hosts: "{{ host }}"
+  gather_facts: no
+  become: yes    
+  task:
+    
+    # - name: Remove old container if exists
+    #   community.docker.docker_container:
+    #     name: "{{ container_name }}"
+    #     state: absent
+
+    # - name: Remove an old volume if exists
+    #   community.docker.docker_volume:
+    #     name: "{{ volume_name }}"
+    #     state: absent
+
+      - name: Validate if API url was defined
+        assert:
+          that: 
+            - pathfinder_api_token_url  != 'not_defined'
+          fail_msg: "Invalid API KEY provided"
+          success_msg: "API KEY looks good!"
+
+      - name: Version to checkout Init
+        set_fact: checkout_version="{{ pathfinder_version }}"
+      
+      - block: 
+
+          - name: Check latest version
+            uri:
+              url: "{{ pathfinder_githubapi_url }}"
+              return_content: true
+            register: pathfinder_latest
+
+          - name: Define version to checkout
+            set_fact: checkout_version="{{ pathfinder_latest.json.tag_name }}"
+
+          
+        when: pathfinder_version == 'latest'
+
+      - name: Print latest checkout_version variable
+        debug:
+          msg: "{{ checkout_version }}"  
+
+
+      - name: Git checkout
+        ansible.builtin.git:
+          repo: '{{ pathfinder_git_link }}'
+          dest: "{{ pathfinder_git_name }}/"
+          version: "{{ checkout_version }}"
+
+      - name: 'Make Env file for compose image'
+        lineinfile:
+          path:  "{{ pathfinder_git_name }}/{{ env_file }}"
+          create: yes
+          line: "PATHFINDER_ETHEREUM_API_URL={{ pathfinder_api_token_url }}"
+
+      - name: Start the container 
+        community.docker.docker_container:
+          name: "{{ container_name }}"
+          image: "{{ source_image_name }}"
+          detach: yes
+          restart_policy: unless-stopped
+          volumes: 
+            - "{{ volume_name }}:{{ container_mount_point }}"
+          env:
+              RUST_LOG: "info"
+              PATHFINDER_ETHEREUM_API_URL: "{{ pathfinder_api_token_url }}"
