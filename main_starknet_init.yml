@@ -12,23 +12,15 @@
       assert:
         that: 
           - pathfinder_api_token  != 'not_defined'
-        fail_msg: "Invalid activity provided, specify one of- nuke, touch, copy"
-        success_msg: "Input looks good!"
+        fail_msg: "Invalid API KEY provided"
+        success_msg: "API KEY looks good!"
     
-    - block:
-        - name: 'Print message about the problem'
-          debug:
-            msg: API Token not defined
-
-        - name: 'Finish processing'
-          meta: end_host
-      when: pathfinder_api_token  == 'not_defined'
 
     - name: Git checkout
       ansible.builtin.git:
         repo: '{{ pathfinder_git_link }}'
         dest: "{{ pathfinder_git_name }}/"
-        version: "{{ pathfinder_version }}"
+       # version: "{{ pathfinder_version }}"
 
       
 
