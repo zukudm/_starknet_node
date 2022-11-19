@@ -23,7 +23,7 @@
 
     - name: Print latest version
       debug:
-        msg: "{{ pathfinder_latest }}"
+        msg: "{{ pathfinder_latest.json.tag_name }}"
 
     # - name: Git checkout
     #   ansible.builtin.git:
