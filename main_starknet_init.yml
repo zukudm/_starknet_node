@@ -52,6 +52,8 @@
     - name: 'Make a directory for a volume'
       file:
         state: directory
+        owner: 1000
+        group: 1000
         path: "./{{ pathfinder_git_name }}/{{ pathfinder_git_name }}"
 
 
