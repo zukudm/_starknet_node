@@ -20,7 +20,7 @@
       ansible.builtin.git:
         repo: '{{ pathfinder_git_link }}'
         dest: "{{ pathfinder_git_name }}/"
-       # version: "{{ pathfinder_version }}"
+        version: "{{ pathfinder_version }}"
 
       
 
