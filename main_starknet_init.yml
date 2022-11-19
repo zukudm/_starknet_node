@@ -15,15 +15,30 @@
         fail_msg: "Invalid API KEY provided"
         success_msg: "API KEY looks good!"
     
-    - name: Check latest version
-      uri:
-        url: "{{ pathfinder_githubapi_url }}"
-        return_content: true
-      register: pathfinder_latest
+    - block: 
 
-    - name: Print latest version
-      debug:
-        msg: "{{ pathfinder_latest.json.tag_name }}"
+        - name: Check latest version
+          uri:
+            url: "{{ pathfinder_githubapi_url }}"
+            return_content: true
+          register: pathfinder_latest
+
+        - name: Print latest version
+          debug:
+            msg: "{{ pathfinder_latest.json.tag_name }}"
+        
+        - name: Define version to checkout
+          set_fact: pathfinder_version="{{ pathfinder_latest.json.tag_name }}"
+
+        - name: Print latest pathfinder_version variable
+          debug:
+            msg: "{{ pathfinder_version }}"
+
+      when: pathfinder_version == 'latest'
+
+      
+
+
 
     # - name: Git checkout
     #   ansible.builtin.git:
