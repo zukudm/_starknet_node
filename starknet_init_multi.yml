@@ -58,7 +58,7 @@
           image: "{{ source_image_name }}"
           detach: yes
           restart_policy: unless-stopped
-          networks: "{{ pathfinder_net }}"
+          networks: "{{ network_name }}"
           volumes: 
             - "{{ volume_name }}:{{ container_mount_point }}"
           env:
