@@ -9,7 +9,7 @@
     - name: pathfinder_api_token_url
       prompt: What is your api token url
       private: no
-      default: not_defined
+     # default: not_defined
 
   tasks:
 
