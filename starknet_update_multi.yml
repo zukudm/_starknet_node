@@ -41,8 +41,8 @@
       - name: Check if node has a new version
         assert:
           that: 
-            - hostvars['localhost']['the_target'] is defined
-            - hostvars['localhost']['the_target'] != checkout_version
+            - hostvars['localhost']['starknet_current_version'] is defined
+            - hostvars['localhost']['starknet_current_version'] != checkout_version
           fail_msg: "Update is not available"
 
       - name: Remove old container if exists
