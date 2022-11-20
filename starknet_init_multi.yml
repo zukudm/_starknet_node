@@ -20,9 +20,9 @@
       - name: Validate if API url was defined
         assert:
           that: 
-            - pathfinder_api_token_url  != 'not_defined'
-          fail_msg: "Invalid API KEY provided"
-          success_msg: "API KEY looks good!"
+            - pathfinder_api_token_url  is defined
+          fail_msg: "API KEY was not provided!"
+          
 
       - name: Version to checkout Init
         set_fact: checkout_version="{{ pathfinder_version }}"
