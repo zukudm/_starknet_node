@@ -46,12 +46,6 @@
           msg: "{{ checkout_version }}"  
 
 
-      - name: 'Make Env file for compose image'
-        lineinfile:
-          path:  "{{ pathfinder_git_name }}/{{ env_file }}"
-          create: yes
-          line: "PATHFINDER_ETHEREUM_API_URL={{ pathfinder_api_token_url }}"
-
       - name: Create a docker network
         docker_network:
           name: "{{ network_name }}"
