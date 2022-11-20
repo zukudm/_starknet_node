@@ -7,15 +7,15 @@
   
   tasks:
     
-    # - name: Remove old container if exists
-    #   community.docker.docker_container:
-    #     name: "{{ container_name }}"
-    #     state: absent
+      - name: Remove old container if exists
+        community.docker.docker_container:
+          name: "{{ container_name }}"
+          state: absent
 
-    # - name: Remove an old volume if exists
-    #   community.docker.docker_volume:
-    #     name: "{{ volume_name }}"
-    #     state: absent
+      - name: Remove an old volume if exists
+        community.docker.docker_volume:
+          name: "{{ volume_name }}"
+          state: absent
 
       - name: Validate if API url was defined
         assert:
@@ -46,12 +46,6 @@
           msg: "{{ checkout_version }}"  
 
 
-      - name: Git checkout
-        ansible.builtin.git:
-          repo: '{{ pathfinder_git_link }}'
-          dest: "{{ pathfinder_git_name }}/"
-          version: "{{ checkout_version }}"
-
       - name: 'Make Env file for compose image'
         lineinfile:
           path:  "{{ pathfinder_git_name }}/{{ env_file }}"
@@ -64,6 +58,7 @@
           image: "{{ source_image_name }}"
           detach: yes
           restart_policy: unless-stopped
+          networks: "{{ network_name }}"
           volumes: 
             - "{{ volume_name }}:{{ container_mount_point }}"
           env:

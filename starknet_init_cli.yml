@@ -1,0 +1,17 @@
+- name: Run Install from cli
+  vars_files: 
+    - vars/vars.yml
+    
+  hosts: localhost
+  gather_facts: no
+  become: yes
+  vars_prompt:
+    - name: pathfinder_api_token_url
+      prompt: What is your api token url
+      private: no
+      default: not_defined
+
+  tasks:
+
+    - name: Run main task
+      include_tasks: "main_starknet_init.yml"
