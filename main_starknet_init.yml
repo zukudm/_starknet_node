@@ -12,7 +12,7 @@
       assert:
         that: 
           - pathfinder_api_token_url  is defined
-        fail_msg: "API KEY was not provided!!!"
+        fail_msg: "API KEY was not provided!"
         
 
     - name: Version to checkout Init
@@ -69,4 +69,11 @@
 
     - ansible.builtin.debug:
         var: output
+
+    - name: Save installed version as localhost variable
+      run_once: yes
+      delegate_to: localhost
+      delegate_facts: 
+        current_version: "{{ checkout_version }}"
+        
           
