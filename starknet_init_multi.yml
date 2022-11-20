@@ -62,4 +62,4 @@
 
       - name: Print installed version localhost var
         debug: 
-          msg: "Value is hostvars['localhost']['starknet_current_version']"
+          msg: "Value is {{ hostvars['localhost']['starknet_current_version'] }}"
