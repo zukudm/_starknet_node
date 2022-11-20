@@ -59,3 +59,7 @@
         delegate_facts: yes
         set_fact:
           starknet_current_version: "{{ checkout_version }}"
+
+      - name: Print installed version localhost var
+        debug: 
+          msg: "Value is hostvars['localhost']['starknet_current_version']"
