@@ -12,10 +12,6 @@
           name: "{{ container_name }}"
           state: absent
 
-      - name: Remove an old volume if exists
-        community.docker.docker_volume:
-          name: "{{ volume_name }}"
-          state: absent
 
       - name: Validate if API url was defined
         assert:
@@ -43,19 +39,17 @@
 
       - name: Print latest checkout_version variable
         debug:
-          msg: "{{ checkout_version }}"  
+          msg: "{{ checkout_version }}" 
+
+      - name: Check if node has a new version
+        assert:
+          that: 
+            - hostvars['localhost']['the_target'] is defined
+            - hostvars['localhost']['the_target'] != checkout_version
+          fail_msg: "Update is not available"
 
 
-      - name: 'Make Env file for compose image'
-        lineinfile:
-          path:  "{{ pathfinder_git_name }}/{{ env_file }}"
-          create: yes
-          line: "PATHFINDER_ETHEREUM_API_URL={{ pathfinder_api_token_url }}"
-
-      - name: Create a docker network
-        docker_network:
-          name: "{{ network_name }}"
-
+      
       - name: Start the container 
         include_tasks: "run_starknet_container.yml"
 
