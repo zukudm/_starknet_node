@@ -73,7 +73,8 @@
     - name: Save installed version as localhost variable
       run_once: yes
       delegate_to: localhost
-      delegate_facts: 
+      delegate_facts: yes
+      set_fact:
         current_version: "{{ checkout_version }}"
-        
+
           
