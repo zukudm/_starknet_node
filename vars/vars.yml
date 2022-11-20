@@ -3,7 +3,7 @@ container_name: pathfinder_node
 volume_name: pathfinder_volume
 network_name: pathfinder_net
 
-source_image_name: eqlabs/pathfinder:latest
+source_image_name: eqlabs/pathfinder
 container_mount_point: /usr/share/pathfinder/data
 
 # Specify "latest" for latest version or exact version like "v0.3.8"

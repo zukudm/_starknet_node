@@ -1,7 +1,7 @@
 - name: Start the container 
   community.docker.docker_container:
     name: "{{ container_name }}"
-    image: "{{ source_image_name }}"
+    image: "{{ source_image_name }}:{{ checkout_version }}"
     detach: yes
     restart_policy: unless-stopped
     networks: 
