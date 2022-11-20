@@ -75,6 +75,6 @@
       delegate_to: localhost
       delegate_facts: yes
       set_fact:
-        current_version: "{{ checkout_version }}"
+        starknet_current_version: "{{ checkout_version }}"
 
           
