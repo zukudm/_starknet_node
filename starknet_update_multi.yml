@@ -40,7 +40,7 @@
 
       - name: Print last version
         debug:
-          msg: "{{ hostvars['localhost']['starknet_current_version'] }}" 
+          msg: "{{ hostvars['starknet_dummy_host']['starknet_version'] }}" 
     
 
       - name: Check if node has a new version
