@@ -15,7 +15,7 @@
 
       - name: Print information about container
         debug:
-          var: "{{ result.container['State']['Status'] }}"
+          var: "{{ result.container }}"
         when: result.exists
 
       - name: Validate if API url was defined
