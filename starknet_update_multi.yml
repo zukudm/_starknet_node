@@ -46,16 +46,16 @@
         debug:
           msg: "{{ checkout_version }}" 
 
-      
+      - name: Validate if new version exist for container 
+        assert:
+          that: 
+            - checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
+          fail_msg: "Update is not available"
+          success_msg: "Ready for update"
 
     
 
-      # - name: Check if node has a new version
-      #   assert:
-      #     that: 
-      #       -  hostvars['localhost']['starknet_current_version'] is defined
-      #       -  hostvars['localhost']['starknet_current_version'] }} != checkout_version
-      #     fail_msg: "Update is not available"
+      
 
       # - name: Remove old container if exists
       #   community.docker.docker_container:
