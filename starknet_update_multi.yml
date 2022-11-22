@@ -8,7 +8,15 @@
   tasks:
     
       
+      - name: Get infos on container
+        docker_container_info:
+          name: "{{ container_name }}"
+        register: result
 
+      - name: Print information about container
+        debug:
+          var: result.container
+        when: result.exists
 
       - name: Validate if API url was defined
         assert:
@@ -38,29 +46,23 @@
         debug:
           msg: "{{ checkout_version }}" 
 
-      - name: Print last version
-        debug:
-          msg: "{{ hostvars['starknet_dummy_host']['starknet_version'] }}" 
+      
+
     
 
-      - name: Check if node has a new version
-        assert:
-          that: 
-            -  hostvars['localhost']['starknet_current_version'] is defined
-            -  hostvars['localhost']['starknet_current_version'] }} != checkout_version
-          fail_msg: "Update is not available"
+      # - name: Check if node has a new version
+      #   assert:
+      #     that: 
+      #       -  hostvars['localhost']['starknet_current_version'] is defined
+      #       -  hostvars['localhost']['starknet_current_version'] }} != checkout_version
+      #     fail_msg: "Update is not available"
 
-      - name: Remove old container if exists
-        community.docker.docker_container:
-          name: "{{ container_name }}"
-          state: absent
+      # - name: Remove old container if exists
+      #   community.docker.docker_container:
+      #     name: "{{ container_name }}"
+      #     state: absent
       
-      - name: Start the container 
-        include_tasks: "run_starknet_container.yml"
+      # - name: Start the container 
+      #   include_tasks: "run_starknet_container.yml"
 
-      - name: Save installed version as localhost variable
-        run_once: yes
-        delegate_to: localhost
-        delegate_facts: yes
-        set_fact:
-          starknet_current_version: "{{ checkout_version }}"
+      # -

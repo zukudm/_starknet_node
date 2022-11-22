@@ -53,19 +53,4 @@
       - name: Start the container 
         include_tasks: "run_starknet_container.yml"
 
-      - name: Save installed version as localhost variable
-        run_once: yes
-        delegate_to: localhost
-        delegate_facts: yes
-        set_fact:
-          starknet_current_version: "{{ checkout_version }}"
-
-      - name: "Add var to dummy host"
-        add_host:
-          name: "starknet_dummy_host"
-          starknet_version: "{{ checkout_version }}"
-          
-
-      - name: Print installed version localhost var
-        debug: 
-          msg: "Value is {{ hostvars['localhost']['starknet_current_version'] }}"
+     
