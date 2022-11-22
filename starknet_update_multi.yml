@@ -13,6 +13,12 @@
           name: "{{ container_name }}"
         register: result
 
+      - name: Validate if container exist``
+        assert:
+          that: 
+            - result.exists
+          fail_msg: "Container is not exist!!!"
+
       - name: Print information about container
         debug:
           msg: "{{ result.container['Config']['Labels']['org.opencontainers.image.version'] }}"
@@ -46,14 +52,6 @@
         debug:
           msg: "{{ checkout_version }}" 
 
-      # - name: Validate if new version exist for container 
-      #   assert:
-      #     that: 
-      #       - checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
-      #     fail_msg: "Update is not available"
-      #     success_msg: "Ready for update"
-
-    
 
       - block:
 
