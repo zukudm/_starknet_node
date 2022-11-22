@@ -15,7 +15,7 @@
 
       - name: Print information about container
         debug:
-          msg: "{{ result.container['State']['Status'] }}"
+          msg: "{{ result.container['Labels']['org.opencontainers.image.version'] }}"
         when: result.exists
 
       - name: Validate if API url was defined
