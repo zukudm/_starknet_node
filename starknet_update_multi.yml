@@ -46,23 +46,29 @@
         debug:
           msg: "{{ checkout_version }}" 
 
-      - name: Validate if new version exist for container 
-        assert:
-          that: 
-            - checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
-          fail_msg: "Update is not available"
-          success_msg: "Ready for update"
+      # - name: Validate if new version exist for container 
+      #   assert:
+      #     that: 
+      #       - checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
+      #     fail_msg: "Update is not available"
+      #     success_msg: "Ready for update"
 
     
 
-      
+      - block:
 
-      # - name: Remove old container if exists
-      #   community.docker.docker_container:
-      #     name: "{{ container_name }}"
-      #     state: absent
-      
-      # - name: Start the container 
-      #   include_tasks: "run_starknet_container.yml"
+          - name: Remove old container if exists
+            community.docker.docker_container:
+              name: "{{ container_name }}"
+              state: absent
+          
+          - name: Start the container 
+            include_tasks: "run_starknet_container.yml"
 
-      # -
+        when: checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
+
+      - name: Print information about container
+        debug:
+          msg: "No new version for container"
+        when: checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
+
