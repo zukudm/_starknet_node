@@ -49,7 +49,7 @@
       - name: Validate if new version exist for container 
         assert:
           that: 
-            - checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
+            - checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
           fail_msg: "Update is not available"
           success_msg: "Ready for update"
 
