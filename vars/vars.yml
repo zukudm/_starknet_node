@@ -6,8 +6,8 @@ network_name: pathfinder_net
 source_image_name: eqlabs/pathfinder
 container_mount_point: /usr/share/pathfinder/data
 
-# Specify "latest" for latest version or exact version like "v0.3.8"
-pathfinder_version: v0.3.8
+
+pathfinder_version: latest
 
 pathfinder_git_link: https://github.com/eqlabs/pathfinder.git
 pathfinder_api_token_link: https://eth-goerli.alchemyapi.io/v2/
