@@ -67,7 +67,7 @@
         project_src: "{{ pathfinder_git_name }}/"
       register: output
 
-    - ansible.builtin.debug:
-        var: output
+    # - ansible.builtin.debug:
+    #     var: output
 
           
