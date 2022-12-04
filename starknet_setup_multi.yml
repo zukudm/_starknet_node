@@ -51,6 +51,6 @@
           name: "{{ network_name }}"
 
       - name: Start the container 
-        include_tasks: "run_starknet_container.yml"
+        include_tasks: "playbooks/run_starknet_container.yml"
 
      

@@ -11,4 +11,3 @@
     env:
         RUST_LOG: "info"
         PATHFINDER_ETHEREUM_API_URL: "{{ pathfinder_api_token_url }}"
-

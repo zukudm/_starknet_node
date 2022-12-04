@@ -19,10 +19,6 @@
             - result.exists
           fail_msg: "Container is not exist!!!"
 
-      - name: Print information about container
-        debug:
-          msg: "{{ result.container['Config']['Labels']['org.opencontainers.image.version'] }}"
-        when: result.exists
 
       - name: Validate if API url was defined
         assert:
@@ -61,7 +57,7 @@
               state: absent
           
           - name: Start the container 
-            include_tasks: "run_starknet_container.yml"
+            include_tasks: "playbooks/run_starknet_container.yml"
 
         when: checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
 

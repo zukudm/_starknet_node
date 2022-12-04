@@ -70,11 +70,4 @@
     - ansible.builtin.debug:
         var: output
 
-    - name: Save installed version as localhost variable
-      run_once: yes
-      delegate_to: localhost
-      delegate_facts: yes
-      set_fact:
-        starknet_current_version: "{{ checkout_version }}"
-
           

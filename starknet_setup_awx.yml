@@ -8,5 +8,5 @@
   tasks:
 
     - name: Run main task
-      include_tasks: "main_starknet_init.yml"
+      include_tasks: "playbooks/main_starknet_init.yml"
       
