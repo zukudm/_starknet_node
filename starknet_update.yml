@@ -1,0 +1,63 @@
+- name: Install 
+  vars_files: 
+    - vars/vars.yml
+  hosts: localhost
+  gather_facts: no
+  become: yes    
+  
+  tasks:
+    
+      
+      - name: Get infos on container
+        docker_container_info:
+          name: "{{ container_name }}"
+        register: result
+
+      - name: Validate if container exist``
+        assert:
+          that: 
+            - result.exists
+          fail_msg: "Container is not exist!!!"
+          
+
+      - name: Version to checkout Init
+        set_fact: checkout_version="{{ pathfinder_version }}"
+      
+      - block: 
+
+          - name: Check latest version
+            uri:
+              url: "{{ pathfinder_githubapi_url }}"
+              return_content: true
+            register: pathfinder_latest
+
+          - name: Define version to checkout
+            set_fact: checkout_version="{{ pathfinder_latest.json.tag_name }}"
+
+          
+        when: pathfinder_version == 'latest'
+
+      - name: Print latest checkout_version variable
+        debug:
+          msg: "{{ checkout_version }}" 
+
+
+      - block:
+
+            - name: Tear down existing services
+              community.docker.docker_compose:
+                project_src: "{{ pathfinder_git_name }}/"
+                state: absent
+          
+            - name: Create and start services
+              community.docker.docker_compose:
+                project_src: "{{ pathfinder_git_name }}/"
+              register: output
+
+        when: checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
+
+      - name: Print information about container
+        debug:
+          msg: "No new version for container"
+        when: checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
+
