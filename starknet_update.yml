@@ -16,17 +16,10 @@
 
       - name: Print latest checkout_version variable
         debug:
-          msg: "{{ ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] }}" 
+          msg: "Current version is  {{ ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] }}" 
 
 
 
-
-      - name: Validate if container exist``
-        assert:
-          that: 
-            - result.exists
-          fail_msg: "Container is not exist!!!"
-          
 
       - name: Version to checkout Init
         set_fact: checkout_version="{{ pathfinder_version }}"
@@ -62,10 +55,10 @@
                 project_src: "{{ pathfinder_git_name }}/"
               register: output
 
-        when: checkout_version !=  result.container['Config']['Labels']['org.opencontainers.image.version']
+        when: checkout_version !=  ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] 
 
       - name: Print information about container
         debug:
           msg: "No new version for container"
-        when: checkout_version ==  result.container['Config']['Labels']['org.opencontainers.image.version']
+        when: checkout_version ==   ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] 
 
