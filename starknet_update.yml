@@ -16,7 +16,7 @@
 
       - name: Print latest checkout_version variable
         debug:
-          msg: "{{ results.services{0} }}" 
+          msg: "{{ results.services }}" 
 
 
 
