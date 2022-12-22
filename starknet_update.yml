@@ -16,7 +16,7 @@
 
       - name: Print latest checkout_version variable
         debug:
-          msg: "{{ ((results.services.values() | first).values() | first).labels.[ 'org_opencontainers_image_version' ] }}" 
+          msg: "{{ ((results.services.values() | first).values() | first).labels[ 'org_opencontainers_image_version' ] }}" 
 
 
 
