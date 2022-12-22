@@ -8,10 +8,18 @@
   tasks:
     
       
-      - name: Get infos on container
-        docker_container_info:
-          name: "{{ container_name }}"
-        register: result
+      - name: Create and start services
+        community.docker.docker_compose:
+          project_src: "{{ pathfinder_git_name }}/"
+          state: present
+        register: results
+
+      - name: Print latest checkout_version variable
+        debug:
+          msg: "{{ results }}" 
+
+
+
 
       - name: Validate if container exist``
         assert:
