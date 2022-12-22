@@ -14,7 +14,7 @@
           state: present
         register: results
 
-      - name: Print latest checkout_version variable
+      - name: Print current version of the container
         debug:
           msg: "Current version is  {{ ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] }}" 
 
@@ -40,7 +40,7 @@
 
       - name: Print latest checkout_version variable
         debug:
-          msg: "{{ checkout_version }}" 
+          msg: "Latest version is {{ checkout_version }}" 
 
 
       - block:
