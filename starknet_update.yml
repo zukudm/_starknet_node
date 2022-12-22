@@ -53,6 +53,7 @@
             - name: Create and start services
               community.docker.docker_compose:
                 project_src: "{{ pathfinder_git_name }}/"
+                pull: true
               register: output
 
             - name: Print information about container
