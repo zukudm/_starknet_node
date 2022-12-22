@@ -55,6 +55,10 @@
                 project_src: "{{ pathfinder_git_name }}/"
               register: output
 
+            - name: Print information about container
+              debug:
+                msg: "Container has been updated"  
+
         when: checkout_version !=  ((results.services.values() | first).values() | first).labels[ 'org.opencontainers.image.version' ] 
 
       - name: Print information about container
