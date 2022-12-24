@@ -58,9 +58,22 @@ To run the update for the Starknet node, log in inside the Linux box and run the
 
 ```bash
  cd _starknet_node
- ansible-playbook starknet_setup.yml
+ ansible-playbook starknet_update.yml
 ```
 
 If no updates are found, nothing will be done
 
 In the case of Ansible AWX run playbook starknet_update_multi.yml
+
+# Remove
+
+To remove Starnet node from the server just log in and run
+
+```bash
+ cd _starknet_node
+ ansible-playbook starknet_remove.yml
+ ```
+ 
+ In case AWX multi runned nodes, stop all containers before and run starknet_remove.yml
+ 
+ 
