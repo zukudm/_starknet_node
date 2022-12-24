@@ -1,7 +1,7 @@
 - name: Install 
   vars_files: 
     - vars/vars.yml
-  hosts: localhost
+  hosts: "{{ host }}"
   gather_facts: no
   become: yes    
   

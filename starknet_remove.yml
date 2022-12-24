@@ -1,0 +1,31 @@
+- name: Remove node
+  vars_files: 
+    - vars/vars.yml
+  hosts: "{{ host }}"
+  gather_facts: no
+  become: yes    
+  
+  tasks:
+ 
+
+      - name: Tear down existing services
+        community.docker.docker_compose:
+          project_src: "{{ pathfinder_git_name }}/"
+          state: absent
+    
+      - name: Prune everything
+        community.docker.docker_prune:
+          containers: true
+          images: true
+          networks: true
+          volumes: true
+          builder_cache: true
+
+      - name: Remove Git directory
+        ansible.builtin.file:
+          path: "{{ pathfinder_git_name }}/"
+          state: absent
+
+
+
+
