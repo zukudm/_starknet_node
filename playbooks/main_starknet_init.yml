@@ -1,12 +1,12 @@
-    - name: Remove old container if exists
-      community.docker.docker_container:
-        name: "{{ container_name }}"
-        state: absent
+    # - name: Remove old container if exists
+    #   community.docker.docker_container:
+    #     name: "{{ container_name }}"
+    #     state: absent
 
-    - name: Remove an old volume if exists
-      community.docker.docker_volume:
-        name: "{{ volume_name }}"
-        state: absent
+    # - name: Remove an old volume if exists
+    #   community.docker.docker_volume:
+    #     name: "{{ volume_name }}"
+    #     state: absent
 
     - name: Validate if API url was defined
       assert:
