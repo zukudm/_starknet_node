@@ -12,6 +12,7 @@
         community.docker.docker_compose:
           project_src: "{{ pathfinder_git_name }}/"
           state: absent
+        ignore_errors: true
     
       - name: Prune everything
         community.docker.docker_prune:
