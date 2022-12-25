@@ -11,6 +11,6 @@
     env:
         RUST_LOG: "info"
         PATHFINDER_ETHEREUM_API_URL: "{{ pathfinder_api_token_url }}"
-    cpus: "{{ cpus }}"
+    cpuss: "{{ cpus }}"
     cpu_shares: "{{ cpu_shares }}"
     
