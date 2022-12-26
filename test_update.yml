@@ -35,7 +35,7 @@
 
       - name: Print current version of the container
         debug:
-          msg: '{{ item.Names }}'
+          msg: '{{ item }}'
         loop: "{{ result.containers }}"
 
       - name: Remove old container if exists
@@ -43,4 +43,4 @@
           name: '{{ item.Names }}'
           state: absent
         loop: "{{ result.containers }}"
-        
+
