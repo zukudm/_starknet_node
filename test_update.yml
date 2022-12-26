@@ -40,7 +40,7 @@
 
       - name: Remove old container if exists
         community.docker.docker_container:
-          name: '{{ item.Names }}'
+          name: '{{ item.Names[0] }}'
           state: absent
         loop: "{{ result.containers }}"
 
