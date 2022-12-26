@@ -35,4 +35,4 @@
 
       - name: Print current version of the container
         debug:
-          msg: "{{ result.containers.names }}"
+          msg: "{{ result.containers[1].names }}"
