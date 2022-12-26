@@ -11,8 +11,8 @@
       - name: Get info on docker host and list images matching the filter
         docker_host_info:
           images: yes
-        images_filters:
-          label: "eqlabs/pathfinder"
+          images_filters:
+            label: "eqlabs/pathfinder"
         register: result
 
       - debug:
