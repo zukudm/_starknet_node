@@ -15,5 +15,20 @@
             label: org.opencontainers.image.title=pathfinder
         register: result
 
-      - debug:
-          var: result.host_info  
+      - name: save the Json data to a Variable as a Fact
+        set_fact: 
+          jsondata: "{{ result | from_json }}"
+
+
+      - name: Containers Names
+        set_fact:  
+          containernames:  "{{ jsondata | json_query(jmesquery) }}"
+        vars:
+          jmesquery: 'containers[*].names'
+
+      - name: Print all containers names
+        debug: 
+          msg: "{{ item }}"
+        with_items: 
+        - "{{ containernames }}"
+      
