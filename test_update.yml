@@ -35,5 +35,5 @@
 
       - name: Print current version of the container
         debug:
-          msg: "{{ item.Names }}"
+          msg: '{{ item }}'
         loop: "{{ result.containers }}"
