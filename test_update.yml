@@ -12,26 +12,9 @@
         docker_host_info:
           containers: yes
           containers_filters:
-            label: org.opencontainers.image.title=pathfinder
+            label: "{{label_name}}={{label_value}}"
         register: result
 
-      # - name: save the Json data to a Variable as a Fact
-      #   set_fact: 
-      #     jsondata: "{{ result.containers | from_json }}"
-
-
-      # - name: Containers Names
-      #   set_fact:  
-      #     containernames:  "{{ jsondata | json_query(jmesquery) }}"
-      #   vars:
-      #     jmesquery: 'containers[*].names'
-
-      # - name: Print all containers names
-      #   debug: 
-      #     msg: "{{ item }}"
-      #   with_items: 
-      #   - "{{ containernames }}"
-      
 
       - name: Print current version of the container
         debug:

@@ -8,11 +8,20 @@
   tasks:
  
 
-      - name: Tear down existing services
-        community.docker.docker_compose:
-          project_src: "{{ pathfinder_git_name }}/"
+      - name: Get info on docker host and list images matching the filter
+        docker_host_info:
+          containers: yes
+          containers_filters:
+            label: "{{label_name}}={{label_value}}"
+        register: result
+
+      - name: Remove old container if exists
+        community.docker.docker_container:
+          name: '{{ item.Names[0] }}'
           state: absent
-        ignore_errors: true
+        loop: "{{ result.containers }}"
+
+
     
       - name: Prune everything
         community.docker.docker_prune:
