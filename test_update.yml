@@ -37,3 +37,10 @@
         debug:
           msg: '{{ item.Names }}'
         loop: "{{ result.containers }}"
+
+      - name: Remove old container if exists
+        community.docker.docker_container:
+          name: '{{ item.Names }}'
+          state: absent
+        loop: "{{ result.containers }}"
+        
