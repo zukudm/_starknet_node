@@ -35,7 +35,7 @@
 
       - name: Print current version of the container
         debug:
-          msg: '{{ item.Image }}'
+          msg: "{{ item | split('\\') | last }}"
         loop: "{{ result.containers }}"
 
       - name: Remove old container if exists
