@@ -10,6 +10,10 @@ Linux box with 1 CPU and 1 GB of RAM
 
 About 100 GB Disk free space
 
+## Install docker to prepare enviroment
+
+Install from [here](https://github.com/zukudm/tools)
+
 ## Install Ansible
 
 Connect to the Linux box, where you are going to run the Starknet node and run commands to install Ansible
