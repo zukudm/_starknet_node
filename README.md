@@ -48,9 +48,16 @@ How to obtain the API URL following the link ????
 
 # List of Ansible playbooks:
 
-starknet_setup.yml - Main file to run starknet within your Linux box (Run it from root user)
-starknet_setup_awx.yml - In case of Ansible AWX, use that playbook
-starknet_update_multi.yml - In case of Ansible AWX, use that file to update existing Starknet node
+starknet_setup.yml - Setup starknet (single option) within your Linux box. Run it from root user. Don't run that playbook via AWX Ansible
+
+starknet_setup_awx.yml - In case of Ansible AWX, use that playbook (single option).
+
+starknet_update.yml - Update existing starknet node, suitable for AWX as well (single option). 
+
+starknet_update_multi.yml - In case of Ansible AWX, use that file to update existing Starknet node.
+
+starknet_remove,yml - Remove all starknet data, suitable for all cases.
+
 
 # Update
 
