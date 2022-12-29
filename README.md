@@ -10,9 +10,21 @@ Linux box with 1 CPU and 1 GB of RAM
 
 About 100 GB Disk free space
 
-## Install docker to prepare enviroment
+## Install docker stuff to prepare enviroment
 
 Install from [here](https://github.com/zukudm/tools)
+
+Also, you can do it without any scripts by yourself:
+
+<details>
+
+
+Docker engine from [here](https://docs.docker.com/engine/install/)
+
+Just select your Linux distributive. 
+
+Docker conmpose from [here](https://docker-docs.netlify.app/compose/install/)
+</details>
 
 ## Install Ansible
 
