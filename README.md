@@ -99,4 +99,33 @@ To remove Starnet node from the server just log in and run
  
  In case AWX multi runned nodes, stop all containers before and run starknet_remove.yml
  
+ # Notes for AWX Asnible and advanced users
+ 
+ <details>
+ 
+ In case running multiply instances of one node, use starknet_setup_multi.yml playbook
+ 
+ For that playbook you must to define extra parameters to run node in multpiply mode:
+ 
+ container_name: node_name_1
+ 
+ volume_name: volume_node_name_1
+ 
+ pathfinder_api_token_url: https://eth-mainnet.g.alchemy.com/v2/############
+ 
+ Those parameters must be defined in appropriate shablons for AWX Ansible or editing file in vars/var.yml for running playbook locally. 
+ 
+ For any playbbok running from AWX Ansible you always must define parameter host
+ 
+ host: enter_upir_linux_ip_here
+ 
+ Default value for this parameter is localhost, so running locally to define or change that parameter is not necessary.
+ 
+  </details>
+ 
+ 
+ 
+ 
+ 
+ 
  
