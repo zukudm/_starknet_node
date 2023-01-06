@@ -10,7 +10,12 @@ Linux box with 1 CPU and 1 GB of RAM
 
 About 100 GB Disk free space
 
-## Install docker stuff to prepare enviroment
+## Prepare your Linux server to run Ansible playbooks
+
+It is necessary to do it only once. If you did it before, skip the docker and Ansible installation
+
+
+### Install docker stuff to prepare environment
 
 Install from [here](https://github.com/zukudm/tools)
 
@@ -26,7 +31,7 @@ Just select your Linux distributive.
 Docker conmpose from [here](https://docker-docs.netlify.app/compose/install/)
 </details>
 
-## Install Ansible
+### Install Ansible
 
 Connect to the Linux box, where you are going to run the Starknet node and run commands to install Ansible
 
@@ -122,10 +127,4 @@ To remove Starnet node from the server just log in and run
  Default value for this parameter is localhost, so running locally to define or change that parameter is not necessary.
  
   </details>
- 
- 
- 
- 
- 
- 
  
