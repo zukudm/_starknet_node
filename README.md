@@ -15,7 +15,7 @@ About 100 GB Disk free space
 It is necessary to do it only once. If you did it before, skip the docker and Ansible installation
 
 
-### Install docker stuff to prepare environment
+### Install docker stuff to prepare the environment
 
 Install from [here](https://github.com/zukudm/tools)
 
@@ -28,12 +28,12 @@ Docker engine from [here](https://docs.docker.com/engine/install/)
 
 Just select your Linux distributive. 
 
-Docker conmpose from [here](https://docker-docs.netlify.app/compose/install/)
+Docker compose from [here](https://docker-docs.netlify.app/compose/install/)
 </details>
 
 ### Install Ansible
 
-Connect to the Linux box, where you are going to run the Starknet node and run commands to install Ansible
+Connect to the Linux box, where you are going to run the node and run commands to install Ansible
 
 In the case of Ubuntu run these commands:
 
@@ -61,7 +61,7 @@ In case of other distributions of Linux, follow instructions from [here](https:/
  ansible-playbook starknet_setup.yml
 ```
 
-You will be asked to input your API URL (URL + API) in form like https://eth-mainnet.g.alchemy.com/v2/############
+You will be asked to input your API URL (URL + API) in a form like https://eth-mainnet.g.alchemy.com/v2/############
 
 where ####### will be your API 
 
@@ -69,15 +69,15 @@ How to obtain the API URL following the link ????
 
 # List of Ansible playbooks:
 
-starknet_setup.yml - Setup starknet (single option) within your Linux box. Run it from root user. Don't run that playbook via AWX Ansible
+starknet_setup.yml - Setup starknet (single option) within your Linux box. Run it from the root user. Don't run that playbook via AWX Ansible
 
-starknet_setup_awx.yml - In case of Ansible AWX, use that playbook (single option).
+starknet_setup_awx.yml - In the case of Ansible AWX, use that playbook (single option).
 
 starknet_update.yml - Update existing starknet node, suitable for AWX as well (single option). 
 
-starknet_update_multi.yml - In case of Ansible AWX, use that file to update existing Starknet node.
+starknet_update_multi.yml - In the case of Ansible AWX, use that file to update the existing Starknet node.
 
-starknet_remove,yml - Remove all starknet data, suitable for all cases.
+starknet_remove.yml - Remove all starknet data, suitable for all cases.
 
 
 # Update
@@ -85,7 +85,7 @@ starknet_remove,yml - Remove all starknet data, suitable for all cases.
 To run the update for the Starknet node, log in inside the Linux box and run these commands
 
 ```bash
- cd _starknet_node
+ cd ~/_starknet_node
  ansible-playbook starknet_update.yml
 ```
 
@@ -95,36 +95,36 @@ In the case of Ansible AWX run playbook starknet_update_multi.yml
 
 # Remove
 
-To remove Starnet node from the server just log in and run
+To remove Starknet node from the server just log in and run
 
 ```bash
- cd _starknet_node
+ cd ~/_starknet_node
  ansible-playbook starknet_remove.yml
  ```
  
- In case AWX multi runned nodes, stop all containers before and run starknet_remove.yml
+ In case AWX multi run nodes, stop all containers before and run starknet_remove.yml
  
- # Notes for AWX Asnible and advanced users
+ # Notes for AWX Ansible and advanced users
  
  <details>
  
- In case running multiply instances of one node, use starknet_setup_multi.yml playbook
+ In case running multiple instances of one node, use starknet_setup_multi.yml playbook
  
- For that playbook you must to define extra parameters to run node in multpiply mode:
+ For that playbook you must define extra parameters to run the node in multiple mode:
  
- container_name: node_name_1
+    container_name: node_name_1
  
- volume_name: volume_node_name_1
+    volume_name: volume_node_name_1
  
- pathfinder_api_token_url: https://eth-mainnet.g.alchemy.com/v2/############
+    pathfinder_api_token_url: https://eth-mainnet.g.alchemy.com/v2/############
  
- Those parameters must be defined in appropriate shablons for AWX Ansible or editing file in vars/var.yml for running playbook locally. 
+ Those parameters must be defined in appropriate shablons for AWX Ansible or editing files in vars/var.yml for running the playbook locally. 
  
- For any playbbok running from AWX Ansible you always must define parameter host
+ For any playbook running from AWX Ansible, you always must define the parameter host
  
- host: enter_upir_linux_ip_here
+ host: enter_server_linux_ip_here
  
- Default value for this parameter is localhost, so running locally to define or change that parameter is not necessary.
+ The default value for this parameter is localhost, so running locally to define or change that parameter is not necessary.
  
   </details>
  
