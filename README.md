@@ -67,18 +67,6 @@ where ####### will be your API
 
 How to obtain the API URL following the link ????
 
-# List of Ansible playbooks:
-
-starknet_setup.yml - Setup starknet (single option) within your Linux box. Run it from the root user. Don't run that playbook via AWX Ansible
-
-starknet_setup_awx.yml - In the case of Ansible AWX, use that playbook (single option).
-
-starknet_update.yml - Update existing starknet node, suitable for AWX as well (single option). 
-
-starknet_update_multi.yml - In the case of Ansible AWX, use that file to update the existing Starknet node.
-
-starknet_remove.yml - Remove all starknet data, suitable for all cases.
-
 
 # Update
 
@@ -103,6 +91,19 @@ To remove Starknet node from the server just log in and run
  ```
  
  In case AWX multi run nodes, stop all containers before and run starknet_remove.yml
+ 
+ # List of Ansible playbooks:
+
+starknet_setup.yml - Setup starknet (single option) within your Linux box. Run it from the root user. Don't run that playbook via AWX Ansible
+
+starknet_setup_awx.yml - In the case of Ansible AWX, use that playbook (single option).
+
+starknet_update.yml - Update existing starknet node, suitable for AWX as well (single option). 
+
+starknet_update_multi.yml - In the case of Ansible AWX, use that file to update the existing Starknet node.
+
+starknet_remove.yml - Remove all starknet data, suitable for all cases.
+
  
  # Notes for AWX Ansible and advanced users
  
