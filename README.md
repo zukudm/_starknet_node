@@ -68,7 +68,7 @@ where ####### will be your API
 How to obtain the API URL following the link ????
 
 
-# Update
+## Update
 
 To run the update for the Starknet node, log in inside the Linux box and run these commands
 
@@ -81,7 +81,7 @@ If no updates are found, nothing will be done
 
 In the case of Ansible AWX run playbook starknet_update_multi.yml
 
-# Remove
+## Remove
 
 To remove Starknet node from the server just log in and run
 
